@@ -51,6 +51,13 @@ public class CreditCardNumberTest {
 	}
 
 	@Test
+	public void throwsInvalidArgumentExceptionWhenCvcNotCVCLENGTH() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			new CreditCardNumber("  53218 76532 1476 22 ", " 1 2 3 5");
+		});
+	}
+
+	@Test
 	public void throwsInvalidArgumentExceptionWhenNumberTooLong() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			new CreditCardNumber("  53218 76532 1476 4445  ", " 1 2 3 ");

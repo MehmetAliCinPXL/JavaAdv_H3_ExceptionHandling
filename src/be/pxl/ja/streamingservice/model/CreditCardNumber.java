@@ -18,6 +18,9 @@ public class CreditCardNumber {
 		if (type == null) {
 			throw new IllegalArgumentException("This is not a valid credit card.");
 		}
+		if(removeBlanks(cvc).length() != 3){
+			throw new IllegalArgumentException("This is not a valid cvc number!");
+		}
 		this.cvc = removeBlanks(cvc);
 	}
 

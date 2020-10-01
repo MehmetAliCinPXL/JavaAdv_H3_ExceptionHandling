@@ -9,14 +9,17 @@ public class PasswordUtil {
 	private static final String SPECIAL_CHARACTERS = "~!@#$%^&*()_-";
 	private static final String ALGORITHM = "MD4";
 
-	public static String encodePassword(String password)  {
+	public static String encodePassword(String password) {
 		MessageDigest messageDigest = null;
-		try {
+		try{
 			messageDigest = MessageDigest.getInstance(ALGORITHM);
-		} catch (NoSuchAlgorithmException e) {
-			// this is not ok!
-			return null;
+		}catch (NoSuchAlgorithmException e){
+			throw new IllegalArgumentException(e);
 		}
+
+		// this is not ok!
+		//return null;
+
 		messageDigest.update(password.getBytes(), 0, password.length());
 		return new BigInteger(1, messageDigest.digest()).toString(16);
 	}
